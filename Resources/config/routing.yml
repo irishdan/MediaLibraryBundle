@@ -1,0 +1,19 @@
+media_library_new:
+    path: /media-library/new
+    defaults: { _controller: MediaLibraryBundle:MediaLibrary:new }
+    methods:  [ GET, POST ]
+
+media_library_show:
+    path: /media-library/show/{id}
+    defaults: { _controller: MediaLibraryBundle:MediaLibrary:show }
+    methods: GET
+
+media_library_edit:
+    path: /media-library/edit/{id}
+    defaults: { _controller: MediaLibraryBundle:MediaLibrary:edit }
+    methods: [ GET, POST ]
+
+media_library_list:
+    path:  /media-library
+    defaults: { _controller: MediaLibraryBundle:MediaLibrary:list }
+    methods: GET

@@ -1,0 +1,49 @@
+{# app/Resources/views/form/fields.html.twig #}
+{% block image_field_widget %}
+    {% spaceless %}
+        <div {{ block('widget_container_attributes') }} class="image-field-widget row">
+            <div class="form-item" data-weight="{{ form.weight.vars.value | raw }}">
+                {% if image is defined %}
+                <a href="#" data-image-id="" class="selected-image col-md-12">
+                    {{ picture_image(image, 'image_field_widget') }}
+                </a>
+                {% else  %}
+                <div class="selected-image col-md-12">
+                    {% spaceless %}
+                    No featured image selected.
+                    {% endspaceless %}
+                </div>
+                {% endif %}
+                {{ form_widget(form.image, {'attr' : {'class' : 'image-field-image'}}) }}
+                {{ form_widget(form.weight, {'attr' : {'class' : 'image-field-weight'}}) }}
+                {{ form_rest(form) }}
+            </div>
+            <div class="action-controls action-create btn-group">
+                <button data-action="select_image" type="submit" class="btn btn-default action-control create-control">Add an existing image</button>
+                <button data-action="create_image" type="submit" class="btn btn-default action-control create-control">Add a new image</button>
+                <button data-action="remove_image" type="submit" class="btn btn-default action-control edit-control">Remove</button>
+                <button data-action="edit_image" type="submit" class="btn btn-default action-control edit-control">Edit</button>
+                <button data-action="select_image" type="submit" class="btn btn-default action-control edit-control">Change</button>
+            </div>
+        </div>
+    {% endspaceless %}
+
+    <div class="modal fade media-library-modal-lg image-field-widget-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myLargeModalLabel">Image Library</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="modal-messages"></div>
+                    <div class="row library-row">
+                    </div>
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

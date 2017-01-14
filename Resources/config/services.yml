@@ -1,0 +1,16 @@
+services:
+    media_library.uploader:
+        class: MediaLibraryBundle\Utils\Uploader
+        # arguments: [ '@image_filesystem' ]
+
+    # Form types.
+    media_library.form.image_field_type:
+        class: MediaLibraryBundle\Form\ImageFieldType
+        arguments: [ '@responsive_image', '@doctrine.orm.entity_manager' ]
+        tags:
+            - { name: form.type }
+
+    # Form handlers
+    media_library.image_form_handler:
+        class: MediaLibraryBundle\Form\Handler\ImageFormHandler
+        arguments: [ '@image_filesystem', '@doctrine.orm.entity_manager', '@media_library.uploader', '@event_dispatcher' ]
