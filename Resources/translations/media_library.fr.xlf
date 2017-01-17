@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="image_library">
+                <source>Image Library</source>
+                <target>Le image biblioteque</target>
+            </trans-unit>
+            <trans-unit id="Add an existing image">
+                <source>Add an existing image</source>
+                <target>Add an existing image</target>
+            </trans-unit>
+            <trans-unit id="Add a new image">
+                <source>Add a new image</source>
+                <target>Add a new image</target>
+            </trans-unit>
+            <trans-unit id="Remove">
+                <source>Remove</source>
+                <target>Remove</target>
+            </trans-unit>
+            <trans-unit id="Edit">
+                <source>Edit</source>
+                <target>Edit</target>
+            </trans-unit>
+            <trans-unit id="Change">
+                <source>Change</source>
+                <target>Change</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
