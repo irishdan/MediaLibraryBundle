@@ -105,6 +105,7 @@ class MediaLibraryController extends Controller
         $image = $em->getRepository('MediaLibraryBundle:Image')->findOneBy(['id' => $image->getId()]);
 
         // @TODO: Set this style automatically if it not already set.
+        // $image->setAttributes(['class' => 'img-circle' ]);
         $this->get('responsive_image')->setPictureSet($image, 'image_field_widget');
 
         return new JsonResponse([

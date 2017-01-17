@@ -5,7 +5,7 @@
         actionUrls: {
             'create_image': '/admin/media-library/new',
             'edit_image': '/admin/media-library/edit/{id}',
-            'get_chosen_image' : '/admin/media-library/show/{id}',
+            'get_chosen_image': '/admin/media-library/show/{id}',
             'remove_image': '/admin/media-library',
             'select_image': '/admin/media-library'
         },
@@ -25,15 +25,14 @@
         queryNumber: 0,
 
         ready: function() {
-            var $fields = $('.image-widget');
+            var $fields = $('.image-field-widget');
 
             // Move the modal window to the bottom of the page.
             $('.image-field-widget-modal').appendTo(document.body);
 
             $fields.each(function() {
                 // Set the image initial id
-                Site.media_library.imageId = $('#user_avatar .image-field-image',this).val();
-                console.log(Site.media_library.imageId);
+                Site.media_library.imageId = $('.image-field-image', this).val();
                 $('.action-control', this).click(function(e) {
                     e.preventDefault();
 
@@ -324,8 +323,8 @@
             console.log(imageId);
             console.log(imageHtml);
 
-            $('#user_avatar .image-field-image').val(imageId);
-            $('#user_avatar .selected-image').html(imageHtml);
+            $('.image-field-widget .image-field-image').val(imageId);
+            $('.image-field-widget .selected-image').html(imageHtml);
         }
     };
 })(jQuery);

@@ -97,6 +97,8 @@ class Image implements ResponsiveImageInterface, Uploadable
      */
     public $picture = null;
 
+    protected $attributes = [];
+
     /**
      * @return mixed
      */
@@ -326,7 +328,8 @@ class Image implements ResponsiveImageInterface, Uploadable
     /**
      * @param $style
      */
-    function setStyle($style) {
+    function setStyle($style)
+    {
         $this->style = $style;
     }
 
@@ -341,10 +344,10 @@ class Image implements ResponsiveImageInterface, Uploadable
     /**
      * Generates an <img> tag for a given style.
      *
-     * @param null $style
      * @return string
      */
-    public function img() {
+    public function img()
+    {
         if (!empty($this->style)) {
             $src = $this->style;
         }
@@ -360,16 +363,34 @@ class Image implements ResponsiveImageInterface, Uploadable
         $height = $this->height;
         $width = $this->width;
 
-        return '<img src="' . $src . '" height="' . $height . '" width="' . $width . '" title="' . $title . '" alt="' . $alt . '"/>';
+        $attributes = $this->getAttributes();
+
+        return '<img src="' . $src . '" height="' . $height . '" width="' . $width . '" title="' . $title . '" alt="' . $alt . '" ' . $attributes . '/>';
     }
 
     /**
-     *  Returns an <img> tag string if the object is printed directly.
+     *  Returns an <img> tag or a <picture> tag string if the object is printed.
      */
-    public function __toString() {
+    public function __toString()
+    {
         if (empty($this->picture)) {
             return $this->img();
         }
         return $this->picture;
+    }
+
+    public function setAttributes(array $attributes)
+    {
+        $this->attributes = $attributes;
+    }
+
+    public function getAttributes()
+    {
+        $attributes = '';
+        foreach ($this->attributes as $attribute => $value) {
+            $attributes .= $attribute . '="' . $value . '" ';
+        }
+
+        return $attributes;
     }
 }

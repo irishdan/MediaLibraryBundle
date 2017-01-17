@@ -6,7 +6,11 @@
             <div class="form-item" data-weight="{{ form.weight.vars.value | raw }}">
                 {% if image is defined %}
                 <a href="#" data-image-id="" class="selected-image col-md-12">
-                    {{ picture_image(image, 'image_field_widget') }}
+                    {% if image_attributes.class is defined %}
+                        {{ picture_image(image, picture_set, { 'class' : image_attributes.class }) }}
+                    {% else %}
+                        {{ picture_image(image, picture_set) }}
+                    {% endif %}
                 </a>
                 {% else  %}
                 <div class="selected-image col-md-12">
@@ -19,7 +23,7 @@
                 {{ form_widget(form.weight, {'attr' : {'class' : 'image-field-weight'}}) }}
                 {{ form_rest(form) }}
             </div>
-            <div class="action-controls action-create btn-group">
+            <div class="action-controls action-create btn-group col-md-12">
                 <button data-action="select_image" type="submit" class="btn btn-default action-control create-control">{% trans %}Add an existing image{% endtrans %}</button>
                 <button data-action="create_image" type="submit" class="btn btn-default action-control create-control">{% trans %}Add a new image{% endtrans %}</button>
                 <button data-action="remove_image" type="submit" class="btn btn-default action-control edit-control">{% trans %}Remove{% endtrans %}</button>
@@ -28,7 +32,6 @@
             </div>
         </div>
     {% endspaceless %}
-
     <div class="modal fade media-library-modal-lg image-field-widget-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">

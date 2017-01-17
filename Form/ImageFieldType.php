@@ -75,14 +75,11 @@ class ImageFieldType extends AbstractType
         $data = $form->getData();
         if (!empty($data)) {
             $image = $data->getImage();
+            if (!empty($image)) {
+                $options['image'] = $image;
+            }
         }
-
-        if (!empty($image)) {
-            $image = $this->imageManager->setPictureSet($image, 'article_edit');
-            $options['image'] = $image;
-
-            $view->vars = array_replace($view->vars, $options);
-        }
+        $view->vars = array_replace($view->vars, $options);
     }
 
     /**
@@ -91,7 +88,11 @@ class ImageFieldType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'MediaLibraryBundle\Entity\ImageField'
+            'data_class' => 'MediaLibraryBundle\Entity\ImageField',
+            'title_field' => TRUE,
+            'alt_field' => TRUE,
+            'picture_set' => 'image_field_widget',
+            'image_attributes' => []
         ));
     }
 }
